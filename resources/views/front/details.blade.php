@@ -215,10 +215,10 @@
                                     {{ __('This is your product') }}
                                 </button>
                             @else
-                                <a href="{{ route('front.checkout', $product->slug) }}"
-                                    class="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300 text-white">
-                                    {{ __('Checkout Now') }}
-                                </a>
+                                <button disabled aria-disabled="true"
+                                    class="bg-gray-400 dark:bg-gray-600 cursor-not-allowed text-center font-semibold p-[12px_20px] rounded-full text-white">
+                                    {{ __('Pembelian sementara tidak tersedia') }}
+                                </button>
                             @endif
                         </div>
                     </div>

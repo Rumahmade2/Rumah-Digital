@@ -11,11 +11,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\WishlistController;
 
-// ─── MIDTRANS WEBHOOK (no CSRF) ───────────────────────────────────────────────
-Route::post('/midtrans/callback', [CheckoutController::class, 'callback'])
-    ->name('midtrans.callback')
-    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
-
 // ─── PUBLIC ROUTES ─────────────────────────────────────────────────────────────
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/details/{product:slug}', [FrontController::class, 'details'])->name('front.details');
@@ -36,8 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/checkout/{product:slug}', [CheckoutController::class, 'checkout'])->name('front.checkout');
-    Route::post('/checkout/{product:slug}', [CheckoutController::class, 'store'])->name('front.checkout_store');
-    Route::get('/success-checkout', [CheckoutController::class, 'success'])->name('front.success_checkout');
 
     Route::get('/product-orders', [ProductOrdersController::class, 'index'])->name('product-orders.index');
     Route::get('/my-orders', [ProductOrdersController::class, 'myOrders'])->name('front.my_orders');
